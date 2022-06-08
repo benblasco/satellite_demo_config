@@ -1,6 +1,5 @@
 ---
-
 satellite_username: 'admin'
 # Password given in landing page e.g. http://7f60.example.opentlc.com/
-satellite_password: 'lIoDrsgNnR91Dl'
+satellite_password: 'YOUR_PASSWORD_HERE'
 satellite_server_url: 'https://satellite.example.com'
