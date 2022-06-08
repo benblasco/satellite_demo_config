@@ -24,9 +24,10 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
 11. Click and show the log for one of the hosts
 
 Optional tasks:
-12. Go back and click on RHSA-2021:2575 Moderate: lz4 security update
-13. Run it and fix the issues on just the one host
-14. Go to content views to explain why the content is not accessible to the prod host
+
+1. Go back and click on RHSA-2021:2575 Moderate: lz4 security update
+2. Run it and fix the issues on just the one host
+3. Go to content views to explain why the content is not accessible to the prod host
 
 # Installing/Updating a package
 
