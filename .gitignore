@@ -1,0 +1,2 @@
+# Ignore SSH key file that may be downloaded
+id_rsa

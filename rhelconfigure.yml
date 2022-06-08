@@ -1,0 +1,111 @@
+---
+- hosts: rhel
+
+  name: Configure RHEL hosts for Remote Execution (REX) from Satellite
+  gather_facts: yes
+  become: yes
+
+  vars:
+
+    rhel_version: "{{ ansible_facts['distribution_version'] }}"
+      #rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
+
+  tasks:
+
+  - name: Show the RHEL version and scap-security-guide-version
+    debug:
+      #msg: RHEL version {{ rhel_version }}
+      #msg: RHEL version {{ rhel_version }} requires {{ scap_security_guide_package[ lookup(vars.rhel_version) ] }}
+      #msg: Requires {{ scap_security_guide_package[ lookup(ansible_facts['distribution_version']) ] }}
+      msg: RHEL version {{ rhel_version }}
+    tags:
+    - debug
+
+  - name: Install katello packages
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - katello-host-tools.noarch
+      - katello-host-tools-tracer.noarch
+      - katello-host-tools-fact-plugin.noarch
+    tags:
+      - yum
+
+  - name: Run some katello commands
+    shell:
+      cmd: "{{ item }}"
+    loop:
+      - katello-package-upload
+      - katello-enabled-repos-upload
+    tags:
+      - katello
+
+  - name: Create the user rexuser
+    user:
+      name: rexuser
+      comment: Remote execution user
+      groups: wheel
+      # Password created from instructions at:
+      # https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
+      # Command used: mkpasswd --method=sha-512
+      password: $6$TZJ8jSJpCUObP3IM$.gYert0WoCKqE6oE.cwLYBAWa1tNY3qlD9IfjUBjJ5p7I.TA27SkXSu5888ekE6exv8uPnAZQcH0yt7qZLrXz/
+      update_password: always
+    tags:
+      - user
+
+  - name: Generate SSH keys for rexuser
+    openssh_keypair:
+      path: /home/rexuser/.ssh/id_rsa
+      owner: rexuser
+      group: rexuser
+    tags:
+      - ssh
+
+  - name: Grab the satellite public key
+    get_url:
+      url: https://satellite.example.com:9090/ssh/pubkey
+      dest: /tmp/satellite_pubkey
+      mode: '0700'
+    tags:
+      - satellite_key
+
+  - name: Register the satellite public key as a variable
+    command:
+      cmd: cat /tmp/satellite_pubkey
+    register: satellite_pubkey_contents
+    tags:
+      - satellite_key
+
+  - name: Insert the satellite public key into authorized_keys
+    lineinfile:
+      path: /home/rexuser/.ssh/authorized_keys
+      line: "{{ satellite_pubkey_contents.stdout }}"
+      owner: rexuser
+      group: rexuser
+      mode: '0700'
+      create: yes
+    tags:
+      - satellite_key
+
+#- name: Allow wheel group to sudo without password
+#    community.general.sudoers:
+#      name: wheel-all-no-password
+#      state: present
+#      group: wheel
+#      commands: ALL
+#      nopasswd: yes
+#    tags:
+#      - sudo
+
+# The module above wasn't recognised despite installing the collection,
+# so I did this instead:
+# https://www.reddit.com/r/ansible/comments/5xzj8b/comment/dezcqrs/?utm_source=share&utm_medium=web2x&context=3
+  - name: Allow wheel group to sudo without password
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^%wheel\s'
+      line: '%wheel ALL=(ALL)       NOPASSWD: ALL'
+    tags:
+      - sudo

@@ -1,0 +1,39 @@
+---
+- hosts: satellite
+
+  name: Configure RHEL hosts for Remote Execution (REX) from Satellite
+  gather_facts: yes
+  become: yes
+
+  vars:
+
+    rhel_version: "{{ ansible_facts['distribution_version'] }}"
+      #rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+
+  - name: Show the RHEL version and scap-security-guide-version
+    debug:
+      #msg: RHEL version {{ rhel_version }}
+      #msg: RHEL version {{ rhel_version }} requires {{ scap_security_guide_package[ lookup(vars.rhel_version) ] }}
+      #msg: Requires {{ scap_security_guide_package[ lookup(ansible_facts['distribution_version']) ] }}
+      msg: RHEL version {{ rhel_version }}
+    tags:
+    - debug
+
+  - name: Configure Satellite for Remote Execution
+    theforeman.foreman.setting:
+      name: "{{ item.name }}"
+      value: "{{ item.value }}"
+      username: "{{ satellite_username }}"
+      password: "{{ satellite_password }}"
+      server_url: "{{ satellite_server_url }}"
+    loop:
+      - { name: 'remote_execution_by_default', value: 'true' }
+      - { name: 'errata_status_installable', value: 'true' }
+      - { name: 'remote_execution_ssh_user', value: 'rexuser' }
+    tags:
+      - satellite_settings
