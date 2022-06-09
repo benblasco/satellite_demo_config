@@ -1,18 +1,9 @@
 # Pre-requisite: ansible-galaxy collection install community.libvirt
 #
-- hosts: localhost
-  connection: local
+- hosts: satellite.example.com
 
   name: Register Satellite, install RHEL system roles, unregister
   gather_facts: no
-
-  vars:
-
-    login: &login
-      server_url: "{{ lookup('env', 'FOREMAN_SERVER') }}"
-      username: "{{ lookup('env', 'FOREMAN_USER') }}"
-      password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
-      validate_certs: no
 
   tasks:
 
