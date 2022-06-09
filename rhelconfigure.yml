@@ -1,7 +1,7 @@
 ---
-- hosts: rhel
+- name: Configure RHEL hosts for Remote Execution (REX) from Satellite
 
-  name: Configure RHEL hosts for Remote Execution (REX) from Satellite
+  hosts: rhel
   gather_facts: yes
   become: yes
 
@@ -98,15 +98,15 @@
     tags:
       - satellite_key
 
- - name: Allow wheel group to sudo without password
-   community.general.sudoers:
-     name: wheel-all-no-password
-     state: present
-     group: wheel
-     commands: ALL
-     nopassword: yes
-   tags:
-     - sudo
+  - name: Allow wheel group to sudo without password
+    community.general.sudoers:
+      name: wheel-all-no-password
+      state: present
+      group: wheel
+      commands: ALL
+      nopassword: yes
+    tags:
+      - sudo
 
 # The module above wasn't recognised despite installing the collection,
 # so I did this instead:
