@@ -1,6 +1,85 @@
-# Config in satellite
+# Deploying the Environment
 
-Create a new version of the CV
+
+## RHPDS
+
+1. Log in to RHPDS at https://rhpds.redhat.com/
+2. In the catalog, search for "AAP2 Ansible & Smart Management Workshop"
+3. Select Size "Training" so you only get one instances, and fill out the other values before submitting
+4. Wait for the workshop to deploy
+5. Click the link provided in the resulting email e.g. http://ac21.example.opentlc.com
+6. Enter your name and an email address (note that these aren't recorded anywhere).
+7. Note the workbench SSH user, likely to be student1, and the workbench password
+8. Note the workbench SSH control node DNS access command, e.g. `ssh student1@student1.ac21.example.opentlc.com`
+
+# Prepare Satellite and the RHEL nodes
+
+1. Complete all setup tasks for Exercise 0: Setup here:
+https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
+
+Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
+
+## On your Linux host with git Ansible installed
+
+1. Copy your SSH key to the control node using the workbench password to log in:
+```
+ssh-copy-id student1@student1.ac21.example.opentlc.com
+```
+2. Test the SSH access, which should work without a password
+```
+ssh student1@student1.ac21.example.opentlc.com
+```
+3. Clone this repo on the control node:
+```
+cd
+git clone https://github.com/benblasco/satellite_demo_config.git
+```
+
+4. Change into the repo directory
+```
+cd satellite_demo_config
+```
+
+5. Grab the SSH private key from the control node
+```
+scp student1@student1.ac21.example.opentlc.com:.ssh/id_rsa .
+```
+
+6. Edit the inventory file, `hosts` updating the ansible_ssh_common_args with the correct control node SSH user and DNS name e.g.
+```
+ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q student1@student1.ac21.example.opentlc.com"'
+```
+
+7. Edit `vars/main.yml`, replacing the password with the workbench password.  Take care to preserve the single quotes around the password.
+
+8. Install the pre-requisite Ansible collections
+```
+ansible-galaxy collection install -r requirements.yml
+```
+
+9. Run the Satellite configuration playbook in "check" mode, and then in regular mode if there are no issues in "check" mode:
+```
+ansible-playbook -i hosts satelliteconfigure.yml --check
+ansible-playbook -i hosts satelliteconfigure.yml
+```
+
+Note: You may receive a connection warning like what is shown below when running the playbook for the first time. Type "yes" and press Enter to continue:
+```
+The authenticity of host 'satellite.example.com (<no hostip for proxy command>)' can't be established.
+ED25519 key fingerprint is SHA256:TI1iiGqfU6x7j4PSm5mtNVYqpMHLouVZlYxOpqV0nGU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+```
+
+10. Run the RHEL node configuration playbook:
+```
+ansible-playbook -i hosts rhelconfigure.yml
+```
+Note: This playbook cannot be run in "check" mode without generating failures.
+
+## Config in satellite
+
+### Create a new version of the CV
 
 Put a filter that includes all packages without errata (ie the base versions of the RHEL packages)
 
@@ -27,7 +106,7 @@ Promote 2020-06-30 to Dev
 Outcome:
 
 
-Register the servers using AAP template:
+### Register the servers using AAP template:
 Next, run the SERVER / RHEL7 - Register job template by clicking thelaunchto launch.
 
 Node1 -> prod
@@ -48,7 +127,7 @@ Node3 updates
 Install    1 Package  (+2 Dependent packages)
 Upgrade  118 Packages
 
-# Configure the remote execution correctly on the hosts
+### ALREADY AUTOMATED Configure the remote execution correctly on the hosts
 
 ```
 sudo -i
@@ -78,7 +157,7 @@ visudo
 %wheel  ALL=(ALL)       NOPASSWD: ALL
 ```
 
-# Configure remote execution successfully in satellite
+### ALREADY AUTOMATED Configure remote execution successfully in satellite
 
 
 Administer->settings->remoteexecution
@@ -88,7 +167,7 @@ Change ssh user from root to rexuser
 # hammer settings set --name remote_execution_ssh_user --value rexuser
 ```
 
-# Remove remote execution requirement so that katello agent is not required
+### ALREADY AUTOMATED Remove remote execution requirement so that katello agent is not required
 
 Bug in Satellite 6.10 at the moment
 
@@ -100,7 +179,7 @@ Another way to enable this is:
 ```
 
 
-# Fix view of errata with content views
+### ALREADY AUTOMATED Fix view of errata with content views
 
 administer -> settings -> content -> "Installable errata from content view"
 change from no to yes
@@ -110,19 +189,19 @@ Another way to enable this is:
 # hammer settings set --name errata_status_installable --value true
 ```
 
-# Create host collection
+### Create host collection
 
-Create a hosts collection called "all hosts collection" and add all 3 hosts to it
+Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it
 
-# Create host group
+### Create host group
 
 Configure -> host groups
-Name: "All hosts group"
+Name: "All RHEL hosts group"
 Save
 Go to hosts -> all hosts
 Add all hosts
 Actions: Change groups
-Add all the hosts to the "all hosts group"
+Add all the RHEL hosts to the "All RHEL hosts group"
 go back and check the host group
 
 # Make sure you can show SCAP compliance
