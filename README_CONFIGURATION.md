@@ -183,18 +183,27 @@ Another way to enable this is:
 
 ### Create host collection
 
-Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it
+Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it:
+
+1. Hosts -> Host Collections -> Create Host Collection
+2. Name "All RHEL hosts collection"
+3. Save
+4. Go to Hosts tab
+5. Click Add
+6. Add the RHEL hosts only
+
 
 ### Create host group
 
-Configure -> host groups
-Name: "All RHEL hosts group"
-Save
-Go to hosts -> all hosts
-Add all hosts
-Actions: Change groups
-Add all the RHEL hosts to the "All RHEL hosts group"
-go back and check the host group
+1. Configure -> host groups
+2. Name: "All RHEL hosts group"
+3. Click "Submit" button
+4. Go to Hosts -> All Hosts
+5. Select all RHEL hosts
+6. Click Actions -> Change group
+7. Select "All RHEL hosts group" from the drop down
+8. Click "Submit" button
+9. Go back and check that all RHEL hosts belong to the correct group (see Host Group) column
 
 # Make sure you can show SCAP compliance
 
