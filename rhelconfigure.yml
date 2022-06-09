@@ -12,7 +12,7 @@
 
   tasks:
 
-  - name: Show the RHEL version and scap-security-guide-version
+  - name: Show the RHEL version
     debug:
       #msg: RHEL version {{ rhel_version }}
       #msg: RHEL version {{ rhel_version }} requires {{ scap_security_guide_package[ lookup(vars.rhel_version) ] }}
@@ -54,6 +54,16 @@
     tags:
       - user
 
+  - name: Create .ssh directory for rexuser
+    file:
+      path: /home/rexuser/.ssh
+      state: directory
+      owner: rexuser
+      group: rexuser
+      mode: '0700'
+    tags:
+      - ssh
+
   - name: Generate SSH keys for rexuser
     openssh_keypair:
       path: /home/rexuser/.ssh/id_rsa
@@ -88,24 +98,24 @@
     tags:
       - satellite_key
 
-#- name: Allow wheel group to sudo without password
-#    community.general.sudoers:
-#      name: wheel-all-no-password
-#      state: present
-#      group: wheel
-#      commands: ALL
-#      nopasswd: yes
-#    tags:
-#      - sudo
+ - name: Allow wheel group to sudo without password
+   community.general.sudoers:
+     name: wheel-all-no-password
+     state: present
+     group: wheel
+     commands: ALL
+     nopassword: yes
+   tags:
+     - sudo
 
 # The module above wasn't recognised despite installing the collection,
 # so I did this instead:
 # https://www.reddit.com/r/ansible/comments/5xzj8b/comment/dezcqrs/?utm_source=share&utm_medium=web2x&context=3
-  - name: Allow wheel group to sudo without password
-    lineinfile:
-      path: /etc/sudoers
-      state: present
-      regexp: '^%wheel\s'
-      line: '%wheel ALL=(ALL)       NOPASSWD: ALL'
-    tags:
-      - sudo
+# - name: Allow wheel group to sudo without password
+#   lineinfile:
+#     path: /etc/sudoers
+#     state: present
+#     regexp: '^%wheel\s'
+#     line: '%wheel ALL=(ALL)       NOPASSWD: ALL'
+#   tags:
+#     - sudo
