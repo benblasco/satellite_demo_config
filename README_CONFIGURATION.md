@@ -23,7 +23,7 @@ Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
 1. Copy your SSH key to the control node using the workbench password to log in:
 ```
-ssh-copy-id student1@student1.ac21.example.opentlc.com
+ssh-copy-id student1@student1.ac21.example.opentlc.com .
 ```
 2. Test the SSH access, which should work without a password
 ```
@@ -61,14 +61,6 @@ ansible-galaxy collection install -r requirements.yml
 ```
 ansible-playbook -i hosts satelliteconfigure.yml --check
 ansible-playbook -i hosts satelliteconfigure.yml
-```
-
-Note: You may receive a connection warning like what is shown below when running the playbook for the first time. Type "yes" and press Enter to continue:
-```
-The authenticity of host 'satellite.example.com (<no hostip for proxy command>)' can't be established.
-ED25519 key fingerprint is SHA256:TI1iiGqfU6x7j4PSm5mtNVYqpMHLouVZlYxOpqV0nGU.
-This key is not known by any other names
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 
 10. Run the RHEL node configuration playbook:
