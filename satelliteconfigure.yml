@@ -15,7 +15,7 @@
 
   tasks:
 
-  - name: Show the RHEL version and scap-security-guide-version
+  - name: Show the RHEL version
     debug:
       #msg: RHEL version {{ rhel_version }}
       #msg: RHEL version {{ rhel_version }} requires {{ scap_security_guide_package[ lookup(vars.rhel_version) ] }}
