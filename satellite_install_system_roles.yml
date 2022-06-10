@@ -1,5 +1,4 @@
-# Pre-requisite: ansible-galaxy collection install community.libvirt
-#
+---
 - hosts: satellite.example.com
 
   name: Register Satellite, install RHEL system roles, unregister
