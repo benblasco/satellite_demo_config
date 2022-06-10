@@ -5,38 +5,30 @@
   gather_facts: yes
   become: yes
 
-  vars:
-
-    rhel_version: "{{ ansible_facts['distribution_version'] }}"
-      #rhel_version: "{{ ansible_facts['distribution_major_version'] }}"
-
   tasks:
 
-  - name: Show the RHEL version
-    debug:
-      msg: RHEL version {{ rhel_version }}
-    tags:
-    - debug
+  - name: Katello actions on RHEL hosts
+    block:
+    - name: Install katello packages
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - katello-host-tools.noarch
+        - katello-host-tools-tracer.noarch
+        - katello-host-tools-fact-plugin.noarch
+      tags:
+        - yum
 
-  - name: Install katello packages
-    yum:
-      name: "{{ item }}"
-      state: latest
-    loop:
-      - katello-host-tools.noarch
-      - katello-host-tools-tracer.noarch
-      - katello-host-tools-fact-plugin.noarch
-    tags:
-      - yum
-
-  - name: Run some katello commands
-    shell:
-      cmd: "{{ item }}"
-    loop:
-      - katello-package-upload
-      - katello-enabled-repos-upload
-    tags:
-      - katello
+    - name: Run some katello commands
+      shell:
+        cmd: "{{ item }}"
+      loop:
+        - katello-package-upload
+        - katello-enabled-repos-upload
+      tags:
+        - katello
+    when: ansible_facts['distribution'] == 'RedHat'
 
   - name: Create the user rexuser
     user:
