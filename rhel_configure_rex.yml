@@ -1,9 +1,8 @@
 ---
 - name: Configure RHEL hosts for Remote Execution (REX) from Satellite
 
-  hosts: rhel
-  gather_facts: yes
-  become: yes
+  #gather_facts: yes
+  #become: yes
 
   tasks:
 
