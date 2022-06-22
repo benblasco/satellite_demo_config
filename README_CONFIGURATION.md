@@ -17,7 +17,7 @@
 1. Complete all setup tasks for Exercise 0: Setup here:
 https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
-Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
+    Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
 2. Create a new project with the following parameters:
 
@@ -29,50 +29,51 @@ Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
 3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
 
-    Name: BBLASCO Satellite Remote Execution
-    Inventory: Workshop Inventory
-    Project: BBLASCO Satellite Demo Config
-    Execution Environment: smart_mgmt workshop execution environment
-    Playbook: satellite_config_rex.yml
-    Credential type: Satellite_Collection
-    Credential name: Satellite Credential
-    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+    - Name: BBLASCO Satellite Remote Execution
+    - Inventory: Workshop Inventory
+    - Project: BBLASCO Satellite Demo Config
+    - Execution Environment: smart_mgmt workshop execution environment
+    - Playbook: satellite_config_rex.yml
+    - Credential type: Satellite_Collection
+    - Credential name: Satellite Credential
+    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
 4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  Note: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.
 
-    Name: BBLASCO Satellite Install System Roles
-    Inventory: Workshop Inventory
-    Project: BBLASCO Satellite Demo Config
-    Execution Environment: smart_mgmt workshop execution environment
-    Playbook: satellite_install_system_roles.yml
-    Credential type: Satellite_Collection
-    Credential name: Satellite Credential
-    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
-    Save
-    Survey -> Add
-    Question: RHN Username
-    Answer variable name: rhn_username
-    Answer type: Text
-    Required: Yes
-    Save
-    Survey -> Add
-    Question: RHN Password
-    Answer variable name: rhn_password
-    Answer type: Password
-    Required: Yes
-    Save
-    Enable Survey via the Slider
+    - Name: BBLASCO Satellite Install System Roles
+    - Inventory: Workshop Inventory
+    - Project: BBLASCO Satellite Demo Config
+    - Execution Environment: smart_mgmt workshop execution environment
+    - Playbook: satellite_install_system_roles.yml
+    - Credential type: Satellite_Collection
+    - Credential name: Satellite Credential
+    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+    - Save
+    - Survey -> Add
+    - Question: RHN Username
+    - Answer variable name: rhn_username
+    - Answer type: Text
+    - Required: Yes
+    - Save
+    - Survey -> Add
+    - Question: RHN Password
+    - Answer variable name: rhn_password
+    - Answer type: Password
+    - Required: Yes
+    - Save
+    - Enable Survey via the Slider
 
 5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
-    Name: BBLASCO RHEL Remote Execution
-    Inventory: Workshop Inventory
-    Project: BBLASCO Satellite Demo Config
-    Execution Environment: smart_mgmt workshop execution environment
-    Playbook: rhel_configure_rex.yml
-    Credential type: Machine
-    Credential name: Workshop Credential
-    Limit: rhel (possibly redundant as it's in the playbook)
-    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+
+    - Name: BBLASCO RHEL Remote Execution
+    - Inventory: Workshop Inventory
+    - Project: BBLASCO Satellite Demo Config
+    - Execution Environment: smart_mgmt workshop execution environment
+    - Playbook: rhel_configure_rex.yml
+    - Credential type: Machine
+    - Credential name: Workshop Credential
+    - Limit: rhel (possibly redundant as it's in the playbook)
+    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
 6. Continue with any other config you want to perform as per the workshop instructions.
 
