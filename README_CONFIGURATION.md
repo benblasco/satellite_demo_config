@@ -127,68 +127,6 @@ Node3 updates
 Install    1 Package  (+2 Dependent packages)
 Upgrade  118 Packages
 
-### ALREADY AUTOMATED Configure the remote execution correctly on the hosts
-
-```
-sudo -i
-yum install -y katello-host-tools.noarch katello-host-tools-tracer.noarch katello-host-tools-fact-plugin.noarch
-
-katello-package-upload
-katello-enabled-repos-upload
-```
-
-
-Configure the SSH key for the service account rexuser
-```
-sudo -i
-useradd -d /home/rexuser -m -c "Remote execution user" -G wheel rexuser
-passwd rexuser
-(redhat123)
-su - rexuser
-ssh-keygen
-curl https://satellite.example.com:9090/ssh/pubkey >> ~rexuser/.ssh/authorized_keys
-chmod 700 ~rexuser/.ssh/authorized_keys
-```
-
-Edit the sudoers file so that members of wheel group don't need a password, and this includes rexuser
-```
-visudo
-## Same thing without a password
-%wheel  ALL=(ALL)       NOPASSWD: ALL
-```
-
-### ALREADY AUTOMATED Configure remote execution successfully in satellite
-
-
-Administer->settings->remoteexecution
-Change ssh user from root to rexuser
-
-```
-# hammer settings set --name remote_execution_ssh_user --value rexuser
-```
-
-### ALREADY AUTOMATED Remove remote execution requirement so that katello agent is not required
-
-Bug in Satellite 6.10 at the moment
-
-https://access.redhat.com/solutions/6667031
-
-Another way to enable this is:
-```
-# hammer settings set --name remote_execution_by_default --value true
-```
-
-
-### ALREADY AUTOMATED Fix view of errata with content views
-
-administer -> settings -> content -> "Installable errata from content view"
-change from no to yes
-
-Another way to enable this is:
-```
-# hammer settings set --name errata_status_installable --value true
-```
-
 ### Create host collection
 
 Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it:
