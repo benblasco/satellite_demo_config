@@ -24,7 +24,7 @@
   - name: Create a RHEL host group
     theforeman.foreman.hostgroup:
       name: "All RHEL hosts host group"
-      state: presento
+      state: present
 
   - name: Modify the hosts
     theforeman.foreman.host:
