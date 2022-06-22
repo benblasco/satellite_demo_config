@@ -75,7 +75,19 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
     - Limit: rhel (possibly redundant as it's in the playbook)
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-6. Continue with any other config you want to perform as per the workshop instructions.
+6. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
+
+    - Name: BBLASCO Satellite Configure RHEL hosts
+    - Inventory: Workshop Inventory
+    - Project: BBLASCO Satellite Demo Config
+    - Execution Environment: smart_mgmt workshop execution environment
+    - Playbook: satellite_config_hosts.yml
+    - Credential type: Machine
+    - Credential name: Workshop Credential
+    - Limit: rheL (possibly redundant as it's in the playbook)
+    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+
+7. Continue with any other config you want to perform as per the workshop instructions.
 
 ## Config in Satellite
 
