@@ -84,7 +84,7 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
     - Playbook: satellite_config_hosts.yml
     - Credential type: Machine
     - Credential name: Workshop Credential
-    - Limit: rheL (possibly redundant as it's in the playbook)
+    - Limit: rhel (possibly redundant as it's in the playbook)
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
 7. Continue with any other config you want to perform as per the workshop instructions.
