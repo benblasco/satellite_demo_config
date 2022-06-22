@@ -22,7 +22,7 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 2. Create a new project with the following parameters:
 
     - Name: BBLASCO Satellite Demo Config
-    - SCM type GIT
+    - SCM type: GIT
     - SCM URL: https://github.com/benblasco/satellite_demo_config
     - Branch: aap_refactor
     - Options: Clean; Update Revision on Launch
@@ -61,7 +61,7 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
     - Answer type: Password
     - Required: Yes
     - Save
-    - Enable Survey via the Slider
+    - Enable Survey via the slider
 
 5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
 
