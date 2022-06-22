@@ -30,8 +30,8 @@
     theforeman.foreman.host:
       name: "{{ item }}"
       hostgroup: "All RHEL hosts host group"
-      config_groups:
-        - "All RHEL hosts collection"
+      #config_groups:
+      #- "All RHEL hosts collection"
       state: present
     loop:
       - node1.example.com
