@@ -17,15 +17,15 @@
 1. Complete all setup tasks for Exercise 0: Setup here:
 https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
-    Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
+    - Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
 2. Create a new project with the following parameters:
 
-    Name: BBLASCO Satellite Demo Config
-    SCM type GIT
-    SCM URL: https://github.com/benblasco/satellite_demo_config
-    Branch: aap_refactor
-    Options: Clean; Update Revision on Launch
+    - Name: BBLASCO Satellite Demo Config
+    - SCM type GIT
+    - SCM URL: https://github.com/benblasco/satellite_demo_config
+    - Branch: aap_refactor
+    - Options: Clean; Update Revision on Launch
 
 3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
 
