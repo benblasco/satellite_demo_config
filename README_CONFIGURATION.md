@@ -12,64 +12,71 @@
 7. Note the workbench SSH user, likely to be student1, and the workbench password
 8. Note the workbench SSH control node DNS access command, e.g. `ssh student1@student1.ac21.example.opentlc.com`
 
-# Prepare Satellite and the RHEL nodes
+# Prepare Satellite and the RHEL nodes using AAP Controller
 
 1. Complete all setup tasks for Exercise 0: Setup here:
 https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
-## On your Linux host with git Ansible installed
+2. Create a new project with the following parameters:
 
-1. Copy your SSH key to the control node using the workbench password to log in:
-```
-ssh-copy-id student1@student1.ac21.example.opentlc.com .
-```
-2. Test the SSH access, which should work without a password
-```
-ssh student1@student1.ac21.example.opentlc.com
-```
-3. Clone this repo on the control node:
-```
-cd
-git clone https://github.com/benblasco/satellite_demo_config.git
-```
+    Name: BBLASCO Satellite Demo Config
+    SCM type GIT
+    SCM URL: https://github.com/benblasco/satellite_demo_config
+    Branch: aap_refactor
+    Options: Clean; Update Revision on Launch
 
-4. Change into the repo directory
-```
-cd satellite_demo_config
-```
+3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
 
-5. Grab the SSH private key from the control node
-```
-scp student1@student1.ac21.example.opentlc.com:.ssh/id_rsa .
-```
+    Name: BBLASCO Satellite Remote Execution
+    Inventory: Workshop Inventory
+    Project: BBLASCO Satellite Demo Config
+    Execution Environment: smart_mgmt workshop execution environment
+    Playbook: satellite_config_rex.yml
+    Credential type: Satellite_Collection
+    Credential name: Satellite Credential
+    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-6. Edit the inventory file, `hosts` updating the ansible_ssh_common_args with the correct control node SSH user and DNS name e.g.
-```
-ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q student1@student1.ac21.example.opentlc.com"'
-```
+4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  Note: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.
 
-7. Edit `vars/main.yml`, replacing the password with the workbench password.  Take care to preserve the single quotes around the password.
+    Name: BBLASCO Satellite Install System Roles
+    Inventory: Workshop Inventory
+    Project: BBLASCO Satellite Demo Config
+    Execution Environment: smart_mgmt workshop execution environment
+    Playbook: satellite_install_system_roles.yml
+    Credential type: Satellite_Collection
+    Credential name: Satellite Credential
+    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+    Save
+    Survey -> Add
+    Question: RHN Username
+    Answer variable name: rhn_username
+    Answer type: Text
+    Required: Yes
+    Save
+    Survey -> Add
+    Question: RHN Password
+    Answer variable name: rhn_password
+    Answer type: Password
+    Required: Yes
+    Save
+    Enable Survey via the Slider
 
-8. Install the pre-requisite Ansible collections
-```
-ansible-galaxy collection install -r requirements.yml
-```
+5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
+    Name: BBLASCO RHEL Remote Execution
+    Inventory: Workshop Inventory
+    Project: BBLASCO Satellite Demo Config
+    Execution Environment: smart_mgmt workshop execution environment
+    Playbook: rhel_configure_rex.yml
+    Credential type: Machine
+    Credential name: Workshop Credential
+    Limit: rhel (possibly redundant as it's in the playbook)
+    Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-9. Run the Satellite configuration playbook in "check" mode, and then in regular mode if there are no issues in "check" mode:
-```
-ansible-playbook -i hosts satelliteconfigure.yml --check
-ansible-playbook -i hosts satelliteconfigure.yml
-```
+6. Continue with any other config you want to perform as per the workshop instructions.
 
-10. Run the RHEL node configuration playbook:
-```
-ansible-playbook -i hosts rhelconfigure.yml
-```
-Note: This playbook cannot be run in "check" mode without generating failures.
-
-## Config in satellite
+## Config in Satellite
 
 ### Create a new version of the CV
 
