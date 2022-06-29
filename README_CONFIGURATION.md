@@ -23,7 +23,7 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 2. Create a new project with the following parameters:
 
-    - Name: BBLASCO Satellite Demo Config
+    - Name: DEMO Satellite Demo Config
     - SCM type: GIT
     - SCM URL: https://github.com/benblasco/satellite_demo_config
     - Branch: aap_refactor
@@ -31,9 +31,9 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
 
-    - Name: BBLASCO Satellite Remote Execution
+    - Name: DEMO Satellite Remote Execution
     - Inventory: Workshop Inventory
-    - Project: BBLASCO Satellite Demo Config
+    - Project: DEMO Satellite Demo Config
     - Execution Environment: smart_mgmt workshop execution environment
     - Playbook: satellite_config_rex.yml
     - Credential type: Satellite_Collection
@@ -42,9 +42,9 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  Note: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.
 
-    - Name: BBLASCO Satellite Install System Roles
+    - Name: DEMO Satellite Install System Roles
     - Inventory: Workshop Inventory
-    - Project: BBLASCO Satellite Demo Config
+    - Project: DEMO Satellite Demo Config
     - Execution Environment: smart_mgmt workshop execution environment
     - Playbook: satellite_install_system_roles.yml
     - Credential type: Satellite_Collection
@@ -67,9 +67,9 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
 
-    - Name: BBLASCO RHEL Remote Execution
+    - Name: DEMO RHEL Remote Execution
     - Inventory: Workshop Inventory
-    - Project: BBLASCO Satellite Demo Config
+    - Project: DEMO Satellite Demo Config
     - Execution Environment: smart_mgmt workshop execution environment
     - Playbook: rhel_configure_rex.yml
     - Credential type: Machine
@@ -79,9 +79,9 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
 6. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
 
-    - Name: BBLASCO Satellite Configure RHEL hosts
+    - Name: DEMO Satellite Configure RHEL hosts
     - Inventory: Workshop Inventory
-    - Project: BBLASCO Satellite Demo Config
+    - Project: DEMO Satellite Demo Config
     - Execution Environment: smart_mgmt workshop execution environment
     - Playbook: satellite_config_hosts.yml
     - Credential type: Satellite_Collection
@@ -122,6 +122,7 @@ Outcome:
 
 
 ### TO BE RETESTED Register the servers using AAP template:
+
 Next, run the SERVER / RHEL7 - Register job template by clicking the "launch" button to launch.
 
 Node1 -> prod
