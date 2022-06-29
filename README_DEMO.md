@@ -66,7 +66,13 @@ https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-po
 and
 https://www.redhat.com/en/blog/advanced-ansible-variables-satellite
 
+Preparation steps:
+1. Configure -> Ansible Roles
+2. Press the button "Import from satellite.example.com"
+3. Check the "Select all" box and click "Submit"
 
+
+Execution steps:
 0. Open a terminal CLI session on node1
 1. Start with Hosts -> all hosts view
 2. Configure -> Host groups. Explain all hosts are here
@@ -83,8 +89,7 @@ https://www.redhat.com/en/blog/advanced-ansible-variables-satellite
 13. Go back to hosts -> all hosts
 14. Alt tab to CLI of node1
 15. Run the following commands on the host
-`more /etc/chrony.conf`
-`chronyc sources`
+`more /etc/chrony.conf` and `chronyc sources`
 16. Back to GUI
 17. Ensure the hosts are selected
 18. Action -> Run all Ansible roles
