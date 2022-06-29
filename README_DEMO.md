@@ -102,7 +102,7 @@ Execution steps:
 1. Go to Hosts -> Policies
 2. Click on Dashboard
 3. Explain that this is better for a truly disconnected environment… but ask how disconnected they need to be.
-4. Can switch to cloud.redhat.com as needed and explain that there you can run remediation here if you have a smart management subscription
+4. Can switch to console.redhat.com as needed and explain that there you can run remediation here if you have a smart management subscription
 
 # Demonstrate Insights
 
