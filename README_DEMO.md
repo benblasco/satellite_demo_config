@@ -9,9 +9,9 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
     c. etc.
 4. Go to content -> content views.  Show how the software is versioned and promoted through the lifecycle environments
 
-# Applying a patch (errata)
+# Applying a patch (errata).  This functionality is currently broken in Satellite 6.10 due to a bug.  You will see an error message saying: "This action uses katello-agent, which is currently disabled. Use remote execution instead."
 
-1. Go to content -> Errata
+1. Go to Content -> Errata
 2. Select only RHEL 7 server repos
 3. Explain Applicable and Installable
 4. Click applicable
@@ -19,7 +19,7 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
 6. Click on the applicable checkbox
 7. Find the first installable errata for all 3 hosts: RHSA-2020:5566 Important: openssl security update
 8. Note the date is Dec 16
-9. Run it and fix the issues on both hosts
+9. Click the Apply Errata button to install it and fix the issues on all impacted hosts
 10. Note that it uses Ansible
 11. Click and show the log for one of the hosts
 
@@ -31,8 +31,8 @@ Optional tasks:
 
 # Installing/Updating a package
 
-1. Go to the All hosts collection
-2. Click package install removal update
+1. Go to the Hosts -> Host Collections -> All (RHEL) hosts collection
+2. Click "Package Installation, Removal, and Update"
 3. Enter “nano” package name (editor) (or screen, vim-enhanced, bash-completion)
 4. Install -> via remote execution
 5. Point out that you could do an “update all packages” but it would take a long time, so we won’t be doing that!
@@ -41,14 +41,14 @@ Optional tasks:
 
 # Check if a reboot is required
 
-1. Go to hosts -> all hosts
-2. Add filter “trace_status=reboot_needed”
+1. Go to Hosts -> All Hosts
+2. Add filter “trace_status=reboot_needed” (without the quotation marks), and press "Search".
 
 Refer to https://access.redhat.com/discussions/3175851
 
 # Run a remote job
 
-1. Go to hosts -> all hosts
+1. Go to hosts -> All Hosts
 2. Select action -> schedule remote job
 3. Fill in text: hostname; uptime; whoami
 4. Submit
@@ -57,14 +57,36 @@ Refer to https://access.redhat.com/discussions/3175851
 
 # Demonstrate system roles
 
-1. Log in to the prod host CLI
-2. Show motd configuration (ie the message upon login)
-3. Run chronyc commands (chronyc sources, head /etc/chrony.conf)
-4. Go to configure -> host group and select the host group
-5. Add the relevant roles, show the timesync and ntp parameters
-6. Go back to the prod host via “All hosts” OR go to the configure -> Ansible Variables
-7. Run all (Ansible) system roles
-8. It takes a while depending on how many roles you added
+Using instructions from: 
+https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
+and
+https://www.redhat.com/en/blog/advanced-ansible-variables-satellite
+
+
+0. Open a terminal CLI session on node1
+1. Start with Hosts -> all hosts view
+2. Configure -> Host groups. Explain all hosts are here
+3. Click the host group
+4. Show the hosts in the host group
+5. Back
+6. Click Ansible roles
+7. Add rhel-system-roles.timesync
+8. Submit
+9. Configure -> Ansible Variables
+10. Filter on timesync
+11. Point out the flag, then click the config. Ensure that the line below is pasted exactly as is, and then saved:
+`[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]`
+13. Go back to hosts -> all hosts
+14. Alt tab to CLI of node1
+15. Run the following commands on the host
+`more /etc/chrony.conf`
+`chronyc sources`
+16. Back to GUI
+17. Ensure the hosts are selected
+18. Action -> Run all Ansible roles
+19. Watch it execute on a specific node
+20. Go back and check all completed successfully
+21. Check on the CLI again
 
 # Show SCAP compliance
 
