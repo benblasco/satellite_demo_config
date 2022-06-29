@@ -14,6 +14,8 @@
 
 # Prepare Satellite and the RHEL nodes using AAP Controller
 
+Note: Launch each template once it has been created.
+
 1. Complete all setup tasks for Exercise 0: Setup here:
 https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
@@ -86,11 +88,13 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
     - Credential name: Satellite Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-7. Continue with any other config you want to perform as per the workshop instructions.
+Note: You will need to manually add the relevant hosts to the created host groups and host collections, as this has not yet been automated.
+
+7. Continue with any other configuration you want to perform as per the workshop instructions.
 
 ## Config in Satellite
 
-### Create a new version of the CV
+### TO BE RETESTED Create a new version of the CV
 
 Put a filter that includes all packages without errata (ie the base versions of the RHEL packages)
 
@@ -117,8 +121,8 @@ Promote 2020-06-30 to Dev
 Outcome:
 
 
-### Register the servers using AAP template:
-Next, run the SERVER / RHEL7 - Register job template by clicking thelaunchto launch.
+### TO BE RETESTED Register the servers using AAP template:
+Next, run the SERVER / RHEL7 - Register job template by clicking the "launch" button to launch.
 
 Node1 -> prod
 Node2 -> dev
@@ -138,7 +142,7 @@ Node3 updates
 Install    1 Package  (+2 Dependent packages)
 Upgrade  118 Packages
 
-### Create host collection
+### PARTLY AUTOMATED Create host collection
 
 Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it:
 
@@ -150,7 +154,7 @@ Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL 
 6. Add the RHEL hosts only
 
 
-### Create host group
+### PARTLY AUTOMATED Create host group
 
 1. Configure -> host groups
 2. Name: "All RHEL hosts group"
