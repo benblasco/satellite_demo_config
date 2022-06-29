@@ -168,27 +168,6 @@ Import the foreman-scap-client role as per instructions here
 
 https://www.redhat.com/en/blog/deploying-openscap-satellite-using-ansible
 
-# Install ansible roles
-
-1. register the satellite server via subscription-manager using your own account
-2. Follow instructions here: 
-https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
-or https://www.jazakallah.info/post/how-to-use-ansible-roles-for-remote-management-from-satellite-server
-
-
-# Timesync system role
-
-https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
-
-https://www.redhat.com/en/blog/advanced-ansible-variables-satellite
-
-Be sure to select the rhel system roles not the upstream linux system roles
-
-Configure -> Ansible -> variables
-
-[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]
-
-
 # Fix subscription manifest if it goes stale
 
 Content -> subscriptions
