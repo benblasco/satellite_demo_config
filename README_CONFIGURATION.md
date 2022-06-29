@@ -41,8 +41,8 @@ Note: Launch each template once it has been created.
     - Credential name: Satellite Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  Note: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.
-
+4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.
+Note: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.
 Note: The template below includes surveys.  If you want to bypass this just add the variables in the survey as extra_vars when creating the template, with the only caveat being that your RHN password will be seen as plain text.
 
     - Name: DEMO Satellite Install System Roles
