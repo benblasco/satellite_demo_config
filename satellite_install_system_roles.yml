@@ -2,6 +2,11 @@
 - hosts: satellite.example.com
 
   name: Register Satellite, install RHEL system roles, unregister
+  # Based on instructions here: 
+  # https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
+  # or
+  # https://www.jazakallah.info/post/how-to-use-ansible-roles-for-remote-management-from-satellite-server
+
   gather_facts: no
 
   tasks:
