@@ -3,21 +3,21 @@
 
 ## RHPDS
 
-1. Log in to RHPDS at https://rhpds.redhat.com/
+1. Log in to RHPDS at [https://rhpds.redhat.com]
 2. In the catalog, search for "AAP2 Ansible & Smart Management Workshop"
 3. Select Size "Training" so you only get one instances, and fill out the other values before submitting
 4. Wait for the workshop to deploy
-5. Click the link provided in the resulting email e.g. http://ac21.example.opentlc.com
+5. Click the link provided in the resulting email e.g. [http://<GUID>.example.opentlc.com]
 6. Enter your name and an email address (note that these aren't recorded anywhere).
 7. Note the workbench SSH user, likely to be student1, and the workbench password
-8. Note the workbench SSH control node DNS access command, e.g. `ssh student1@student1.ac21.example.opentlc.com`
+8. Note the workbench SSH control node DNS access command, e.g. `ssh student1@student1.<GUID>.example.opentlc.com`
 
 # Prepare Satellite and the RHEL nodes using AAP Controller
 
 Note: Launch each template once it has been created.
 
 1. Complete all setup tasks for Exercise 0: Setup here:
-https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
+[https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/]
 
     - Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
@@ -25,7 +25,7 @@ https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/
 
     - Name: DEMO Satellite Demo Config
     - SCM type: GIT
-    - SCM URL: https://github.com/benblasco/satellite_demo_config
+    - SCM URL: [https://github.com/benblasco/satellite_demo_config]
     - Branch: aap_refactor
     - Options: Clean; Update Revision on Launch
 
@@ -173,7 +173,7 @@ Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL 
 
 Import the foreman-scap-client role as per instructions here
 
-https://www.redhat.com/en/blog/deploying-openscap-satellite-using-ansible
+[https://www.redhat.com/en/blog/deploying-openscap-satellite-using-ansible]
 
 # Fix subscription manifest if it goes stale
 

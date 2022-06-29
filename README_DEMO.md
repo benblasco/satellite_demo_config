@@ -12,7 +12,7 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
 # Applying a patch (errata). 
 
 Note: This functionality is currently broken in Satellite 6.10 due to a bug.  You will see an error message saying: "This action uses katello-agent, which is currently disabled. Use remote execution instead."
-Bug link: https://bugzilla.redhat.com/show_bug.cgi?id=2029192
+Bug link: [https://bugzilla.redhat.com/show_bug.cgi?id=2029192]
 This bug has been added to advisory RHBA-2022:96560 by Patrick Creech (pcreech@redhat.com)
 
 1. Go to Content -> Errata
@@ -62,9 +62,9 @@ Refer to https://access.redhat.com/discussions/3175851
 # Demonstrate system roles
 
 Using instructions from: 
-https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
+[https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible]
 and
-https://www.redhat.com/en/blog/advanced-ansible-variables-satellite
+[https://www.redhat.com/en/blog/advanced-ansible-variables-satellite]
 
 Preparation steps:
 1. Configure -> Ansible Roles
@@ -112,7 +112,7 @@ Demonstrate this via cloud.redhat.com because our lab hosts are not connected to
 
 - Tailoring SCAP policies
 - Generating reports (Monitor -> Report Templates)
-    https://www.redhat.com/en/blog/getting-started-satellite-65-reporting-engine
+    [https://www.redhat.com/en/blog/getting-started-satellite-65-reporting-engine]
 - Remote execution jobs
 
 
