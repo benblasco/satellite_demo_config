@@ -13,4 +13,4 @@ For instructions on how to deploy configure the environment, refer to [README_CO
 
 ## Demo instructions
 
-For instructions on how to run a demo please refer to [README_DEMO.cfg](README_DEMO.cfg)
+For instructions on how to run a demo please refer to [README_DEMO.md](README_DEMO.md)
