@@ -9,8 +9,8 @@ This project makes it easy to use an existing RHPDS environment to demonstrate k
 
 ## Deployment and configuration instructions
 
-For instructions on how to deploy configure the environment, refer to [README_CONFIG.md]
+For instructions on how to deploy configure the environment, refer to [README_CONFIG.md](README_CONFIG.md)
 
 ## Demo instructions
 
-For instructions on how to run a demo please refer to [README_DEMO.cfg]
+For instructions on how to run a demo please refer to [README_DEMO.cfg](README_DEMO.cfg)
