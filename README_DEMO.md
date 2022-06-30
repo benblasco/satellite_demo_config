@@ -9,7 +9,7 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
     c. etc.
 4. Go to content -> content views.  Show how the software is versioned and promoted through the lifecycle environments
 
-# Applying a patch (errata). 
+# Applying a patch (errata)
 
 Note: This functionality is currently broken in Satellite 6.10 due to a bug.  You will see an error message saying: "This action uses katello-agent, which is currently disabled. Use remote execution instead."
 Bug link: [https://bugzilla.redhat.com/show_bug.cgi?id=2029192](https://bugzilla.redhat.com/show_bug.cgi?id=2029192)
@@ -84,8 +84,10 @@ Execution steps:
 11. Click on the timesync_ntp_servers parameter. 
 12. Click the "Override" check box.
 
-Paste the line below exactly as is into the "Default Value", and then click "Submit"
-`[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]`
+Paste the line below exactly as is into the "Default Value", and then click "Submit"  
+```
+[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]
+```
 
 You will now see that the value has a flag next to it to tell us that it has been overridden.
 13. Go back to hosts -> all hosts
