@@ -82,7 +82,7 @@ Execution steps:
 7. Submit, and explain that now we need to check the configuration
 8. Click on the "Variables" button under the actions for the role
 11. Click on the timesync_ntp_servers parameter. 
-12. Click the "Override" check box.
+12. Click the "Override" check box.  
 
 Paste the line below exactly as is into the "Default Value", and then click "Submit"  
 ```
