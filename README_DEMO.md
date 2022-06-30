@@ -81,32 +81,28 @@ Execution steps:
 6. Add rhel-system-roles.timesync if not already added
 7. Submit, and explain that now we need to check the configuration
 8. Click on the "Variables" button under the actions for the role
-11. Click on the timesync_ntp_servers parameter. 
-12. Click the "Override" check box.  
-
-Paste the line below exactly as is into the "Default Value", and then click "Submit"  
-```
-[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]
-```  
-You will now see that the value has a flag next to it to tell us that it has been overridden.
-13. Go back to hosts -> all hosts
-14. Alt tab to CLI of node1
-15. Run the following commands on the host  
+9. Click on the timesync_ntp_servers parameter. 
+10. Click the "Override" check box, and paste the line below exactly as is into the "Default Value"  
+`[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]`  
+11. Click "Submit".  You will now see that the value has a flag next to it to tell us that it has been overridden.
+12. Go back to hosts -> all hosts
+13. Alt tab to CLI of node1
+14. Run the following commands on the host  
 ```
 more /etc/chrony.conf
 chronyc sources
 ```
-16. Alt tab Back to GUI
-17. Ensure the hosts are selected
-18. Action -> Run all Ansible roles
-19. Watch it execute on a specific node
-20. Go back and check all completed successfully
-21. Check on the CLI again  
+15. Alt tab Back to GUI
+16. Ensure the hosts are selected
+17. Action -> Run all Ansible roles
+18. Watch it execute on a specific node
+19. Go back and check all completed successfully
+20. Check on the CLI again  
 ```
 more /etc/chrony.conf
 chronyc sources
 ```
-22. Summarise how you have applied a configuration at scale across a group of hosts
+21. Summarise how you have applied a configuration at scale across a group of hosts
 
 # Show SCAP compliance
 
