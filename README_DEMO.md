@@ -87,8 +87,7 @@ Execution steps:
 Paste the line below exactly as is into the "Default Value", and then click "Submit"  
 ```
 [{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]
-```
-
+```  
 You will now see that the value has a flag next to it to tell us that it has been overridden.
 13. Go back to hosts -> all hosts
 14. Alt tab to CLI of node1
