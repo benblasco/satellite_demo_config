@@ -66,27 +66,33 @@ Note: Steps below are carried out in Satellite.
 
 Note: Steps below are carried out in AAP Automation Controller
 
-1. M
+1. Move the hosts into different lifecycle environments using the "Server / RHEL 7 - Register" template:
+    - node1 to "Prod"
+    - node2 to "QA"
+    - node3 stays in "Dev" (ie. do nothing)
+2. Run the "EC2 / Set instance tags based on Satellite(Foreman) facts" template
+3. Run the "EC2 / Set instance tag - AnsibleGroup" template
+4. Run the "CONTROLLER / Update inventories via dynamic sources" template
+
+Note: Steps 2-4 above are required to update the inventory in AAP Controller in case that is used elsewhere.
 
 ## Demo (To be updated)
 
 1. Go to Content -> Errata
-2. Select only RHEL 7 server repos
 3. Explain Applicable and Installable
-4. Click applicable
 5. Select 100 per page
-6. Click on the applicable checkbox
-7. Find the first installable errata for all 3 hosts: RHSA-2020:5566 Important: openssl security update
-8. Note the date is Dec 16
+6. Click on the "Installable" checkbox
+7. Find the first installable errata for all 3 hosts: RHBA-2021:3649 ca-certificates bug fix and enhancement update 
+8. Note the date is Sep 23
 9. Click the Apply Errata button to install it and fix the issues on all impacted hosts
 10. Note that it uses Ansible
 11. Click and show the log for one of the hosts
 
 Optional tasks:
 
-1. Go back and click on RHSA-2021:2575 Moderate: lz4 security update
+1. Go back and click on RHSA-2022:0274 Important: polkit security update 
 2. Run it and fix the issues on just the one host
-3. Go to content views to explain why the content is not accessible to the prod host
+3. Go to content views to explain why the content is not accessible to the Prod and QA hosts
 
 # Installing/Updating a package
 
