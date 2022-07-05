@@ -17,10 +17,13 @@ This bug has been added to advisory RHBA-2022:96560 by Patrick Creech (pcreech@r
 
 ## Setup (manual)
 
-Note 1: This is based on the knowledge shared in this comment within a KB article [https://access.redhat.com/discussions/2913231#comment-1148661](https://access.redhat.com/discussions/2913231#comment-1148661)
+Note 1: This is based on the knowledge shared in this comment within a KB article [https://access.redhat.com/discussions/2913231#comment-1148661](https://access.redhat.com/discussions/2913231#comment-1148661).  Please make it a priority to read this article before proceeding.  
+
 Note 2: At the time of writing the latest errata available in the RHPDS Satellite instance were dated approximately February 2022.
 
 ### Publish the Content Views
+
+Note: Steps below are carried out in Satellite.
 
 1. Go to Content -> Content Views
 2. Select the RHEL7 CV
@@ -38,17 +41,19 @@ Note 2: At the time of writing the latest errata available in the RHPDS Satellit
     - Content Type: Erratum - Date and Type
     - Inclusion type: Include
 10. Click Save
-11. Leave all the Errata Type boxes ticked (Security, Enhancement, Bugfix)
+11. Leave all the "Errata Type" boxes ticked (Security, Enhancement, Bugfix)
 12. Select Date Type "Updated On"
 13. Set the End Date to 2021-09-30
 14. Click Save
 15. Click "Publish New Version"
 16. Wait for the CV to publish.  It will take ~20 minutes
-17. Edit the Errata filter, change the date to 2021-12-31, and publish again
-18. Edit the Errata filter, change the date to 2022-03-31, and publish again
-19. You will then have multiple versions of the CV, and each newer version should contain more errata than the previous version
+17. Edit the Errata filter, change the end date to 2021-12-31, and publish again
+18. Edit the Errata filter, change the end date to 2022-03-31, and publish again
+19. You will then have multiple versions of the CV, and each newer version should contain more errata than the previous version.
 
 ### Promote the content views
+
+Note: Steps below are carried out in Satellite.
 
 1. Go back to Content Views -> RHEL 7
 2. Click "Versions"
@@ -56,6 +61,12 @@ Note 2: At the time of writing the latest errata available in the RHPDS Satellit
     - Most recent version (N) to RHEL7_Dev
     - Next most recent version (N-1) to RHEL7_QA
     - Next most recent version (N-2) to RHEL7_Prod
+
+### Move your hosts to the correct Lifecycle Environments
+
+Note: Steps below are carried out in AAP Automation Controller
+
+1. M
 
 ## Demo (To be updated)
 
