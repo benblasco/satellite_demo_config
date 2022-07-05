@@ -15,6 +15,50 @@ Note: This functionality is currently broken in Satellite 6.10 due to a bug.  Yo
 Bug link: [https://bugzilla.redhat.com/show_bug.cgi?id=2029192](https://bugzilla.redhat.com/show_bug.cgi?id=2029192)
 This bug has been added to advisory RHBA-2022:96560 by Patrick Creech (pcreech@redhat.com)
 
+## Setup (manual)
+
+Note 1: This is based on the knowledge shared in this comment within a KB article [https://access.redhat.com/discussions/2913231#comment-1148661](https://access.redhat.com/discussions/2913231#comment-1148661)
+Note 2: At the time of writing the latest errata available in the RHPDS Satellite instance were dated approximately February 2022.
+
+### Publish the Content Views
+
+1. Go to Content -> Content Views
+2. Select the RHEL7 CV
+3. Click "Yum Content" -> "Repositories" and note the repos that are included in the CV
+4. Click "Yum Content" -> "Filters"
+5. Click the "New Filter" button and enter the following parameters:
+    - Name: Base packages with no errata
+    - Content Type: Package
+    - Inclusion type: Include
+6. Click Save
+7. Tick the "Include all RPMs with no errata" box
+8. Click "Yum Content" -> "Filters"
+9. Click the "New Filter" button and enter the following parameters:
+    - Name: Errata to 2021-09-30
+    - Content Type: Erratum - Date and Type
+    - Inclusion type: Include
+10. Click Save
+11. Leave all the Errata Type boxes ticked (Security, Enhancement, Bugfix)
+12. Select Date Type "Updated On"
+13. Set the End Date to 2021-09-30
+14. Click Save
+15. Click "Publish New Version"
+16. Wait for the CV to publish.  It will take ~20 minutes
+17. Edit the Errata filter, change the date to 2021-12-31, and publish again
+18. Edit the Errata filter, change the date to 2022-03-31, and publish again
+19. You will then have multiple versions of the CV, and each newer version should contain more errata than the previous version
+
+### Promote the content views
+
+1. Go back to Content Views -> RHEL 7
+2. Click "Versions"
+3. Promote the versions as follows:
+    - Most recent version (N) to RHEL7_Dev
+    - Next most recent version (N-1) to RHEL7_QA
+    - Next most recent version (N-2) to RHEL7_Prod
+
+## Demo (To be updated)
+
 1. Go to Content -> Errata
 2. Select only RHEL 7 server repos
 3. Explain Applicable and Installable
