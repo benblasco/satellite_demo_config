@@ -1,0 +1,47 @@
+---
+controller_templates:
+  - name: DEMO / Satellite Remote Execution
+    project: DEMO Satellite Config
+    playbook: satellite_config_rex.yml
+    inventory: Workshop Inventory
+    credentials:
+      - Satellite Credential
+	  become_enabled: yes
+	  
+  - name: DEMO / Satellite Install System Roles
+    project: DEMO Satellite Config
+    playbook: satellite_install_system_roles.yml
+    inventory: Workshop Inventory
+    credentials:
+      - Satellite Credential
+	  become_enabled: yes
+	  survey_enabled: true
+	  survey:
+      name: ''
+      description: ''
+      spec:
+        - question_name: RHN user name
+          type: text
+          variable: rhn_username
+          required: true
+        - question_name: RHN password
+          type: password
+          variable: rhn_password
+          required: true
+		  
+  - name: DEMO / RHEL Remote Execution
+    project: DEMO Satellite Config
+    playbook: rhel_configure_rex.yml
+    inventory: Workshop Inventory
+    credentials:
+      - Workshop Credential
+	  become_enabled: yes
+	  limit: rhel
+	  
+  - name: DEMO / Satellite Configure RHEL hosts
+    project: DEMO Satellite Config
+    playbook: satellite_config_hosts.yml
+    inventory: Workshop Inventory
+    credentials:
+      - Satellite Credential
+	  become_enabled: yes
