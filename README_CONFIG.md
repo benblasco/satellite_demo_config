@@ -27,7 +27,7 @@ Note: Launch each template once it has been created.
     - SCM type: GIT
     - SCM URL: [https://github.com/benblasco/satellite_demo_config](https://github.com/benblasco/satellite_demo_config)
     
-    - Branch: aap_refactor
+    - Branch: main
     - Options: Clean; Update Revision on Launch
 
 3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
