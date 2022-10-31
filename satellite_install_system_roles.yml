@@ -1,22 +1,15 @@
-# Pre-requisite: ansible-galaxy collection install community.libvirt
-#
-- hosts: satellite
+---
+- hosts: satellite.example.com
 
   name: Register Satellite, install RHEL system roles, unregister
-  gather_facts: yes
-  become: yes
+  # Based on instructions here: 
+  # https://www.redhat.com/en/blog/satellite-host-configuration-rhel-system-roles-powered-ansible
+  # or
+  # https://www.jazakallah.info/post/how-to-use-ansible-roles-for-remote-management-from-satellite-server
 
-  vars:
-
-    rhel_version: "{{ ansible_facts['distribution_version'] }}"
+  gather_facts: no
 
   tasks:
-
-  - name: Show the RHEL version
-    debug:
-      msg: RHEL version {{ rhel_version }}
-    tags:
-    - debug
 
   - name: Register the systems with subscription-manager
     redhat_subscription:
@@ -30,9 +23,11 @@
     community.general.rhsm_repository:
       name: rhel-7-server-extras-rpms
 
-  - name: Install the rhel-system-roles package via satellite-maintain (takes several minutes)
-    shell:
-      cmd: "satellite-maintain packages install -y rhel-system-roles"
+  - name: Install the rhel-system-roles package
+    yum:
+      name: rhel-system-roles
+      state: present
+      disable_plugin: foreman-protector
 
   - name: Unregister the systems with subscription-manager
     redhat_subscription:

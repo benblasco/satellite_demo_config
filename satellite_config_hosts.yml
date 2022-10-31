@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  connection: local
+
+  name: Configure RHEL hosts for Remote Execution (REX) from Satellite
+  gather_facts: no
+
+  vars:
+    login: &login
+      server_url: "{{ lookup('env', 'FOREMAN_SERVER') }}"
+      username: "{{ lookup('env', 'FOREMAN_USER') }}"
+      password: "{{ lookup('env', 'FOREMAN_PASSWORD') }}"
+      validate_certs: no
+
+  tasks:
+
+  - name: Create a RHEL host collection
+    theforeman.foreman.host_collection:
+      name: "All RHEL hosts collection"
+      description: "All RHEL hosts regardless of Lifecycle Environment"
+      organization: "Default Organization"
+      state: present
+  
+  - name: Create a RHEL host group
+    theforeman.foreman.hostgroup:
+      name: "All RHEL hosts host group"
+      state: present
+
+#  - name: Modify the hosts
+#    theforeman.foreman.host:
+#      name: "{{ item }}"
+#      hostgroup: "All RHEL hosts host group"
+#      #config_groups:
+#      #- "All RHEL hosts collection"
+#      state: present
+#    loop:
+#      - node1.example.com
+#      - node2.example.com
+#      - node3.example.com

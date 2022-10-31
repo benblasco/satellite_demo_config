@@ -8,8 +8,8 @@ satellite.example.com
 
 [all:vars]
 # Update the username and student number based on your RHPDS environment
-ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -p 22 -W %h:%p -q student1@student1.8e50.example.opentlc.com"'
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -p 22 -W %h:%p -q student1@student1.<GUID>.example.opentlc.com"'
 # Grab this file by running the following command:
-# scp student1@student1.8e50.example.opentlc.com:.ssh/id_rsa .
+# scp student1@student1.<GUID>.example.opentlc.com:.ssh/id_rsa .
 ansible_ssh_private_key_file='id_rsa'
 ansible_user='ec2-user'
