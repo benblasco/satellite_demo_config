@@ -52,6 +52,8 @@ Note: Launch each template once it has been created.
     - Playbook: satellite_install_system_roles.yml
     - Credential type: Satellite_Collection
     - Credential name: Satellite Credential
+    - Credential type: Machine
+    - Credential name: Workshop Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
     - Save
     - Survey -> Add
