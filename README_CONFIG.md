@@ -3,8 +3,8 @@
 
 ## RHPDS
 
-1. Log in to RHPDS at [https://rhpds.redhat.com](https://rhpds.redhat.com)
-2. In the catalog, search for "AAP2 Ansible & Smart Management Workshop"
+1. Log in to the [Red Hat Demo System](https://demo.redhat.com)
+2. In the catalog, search for "Ansible Automation Platform 2 & Satellite Workshop"
 3. Select Size "Training" so you only get one instances, and fill out the other values before submitting
 4. Wait for the workshop to deploy
 5. Click the link provided in the resulting email e.g. [http://<GUID>.example.opentlc.com](http://<GUID>.example.opentlc.com)
