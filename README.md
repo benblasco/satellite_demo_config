@@ -1,6 +1,6 @@
 # Red Hat Satellite Demo Configuration
 
-This project makes it easy to use an existing RHPDS environment to demonstrate key Red Hat Satellite Capabilities.
+This project makes it easy for Red Hat employees to use an existing [Red Hat Demo System](demo.redhat.com) environment to demonstrate key Red Hat Satellite capabilities.
 
 ## Pre-requisites
 
