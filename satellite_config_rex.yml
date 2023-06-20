@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: "{{ HOSTS | default('satellite.example.com') }}"
   connection: local
 
   name: Configure RHEL hosts for Remote Execution (REX) from Satellite
