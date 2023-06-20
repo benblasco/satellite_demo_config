@@ -1,10 +1,10 @@
 # Red Hat Satellite Demo Configuration
 
-This project makes it easy for Red Hat employees to use an existing [Red Hat Demo System](https://demo.redhat.com) environment to demonstrate key Red Hat Satellite capabilities.
+This project makes it easy for Red Hat employees to use an existing [Red Hat Demo System](https://demo.redhat.com) (RHDS)environment to demonstrate key Red Hat Satellite capabilities.
 
 ## Pre-requisites
 
-1. This project is intended for use by Red Hat employees with access to RHPDS, and depends on a RHPDS-deployed environment to run.
+1. This project is intended for use by Red Hat employees with access to RHDS, and depends on a RHDS-deployed environment to run.
 2. To execute RHEL system roles, a valid RHN account with appropriate RHEL and Satellite subscriptions is required.
 
 ## Deployment and configuration instructions
