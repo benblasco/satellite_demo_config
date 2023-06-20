@@ -15,6 +15,7 @@
 
   - name: Configure Satellite for Remote Execution
     theforeman.foreman.setting:
+      <<: *login
       name: "{{ item.name }}"
       value: "{{ item.value }}"
     loop:
