@@ -98,7 +98,7 @@ Note: Launch each template once it has been created.
     - Credential name: Satellite Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-Note: You will need to manually add the relevant hosts to the created host groups and host collections, as this has not yet been automated.
+    Note: You will need to manually add the relevant hosts to the created host groups and host collections, as this has not yet been automated.
 
 8. Continue with any other configuration you want to perform as per the workshop instructions.
 
@@ -106,30 +106,18 @@ Note: You will need to manually add the relevant hosts to the created host group
 
 ### TO BE RETESTED Create a new version of the CV
 
-Put a filter that includes all packages without errata (ie the base versions of the RHEL packages)
-
-Note ticking of "include all RPMs with no errata" below
-
-Add another filter to only include erratum up to 2020-12-31
-
-
-Now you can see what version 2.0 looks like, as it has significantly less packages available and less errata.
-
-
-Publish
-
-Edit and rename the filter to include errata up to 2021-02-28
-Publish
-
-Edit and rename the filter to include errata up to 2021-06-30
-Publish again
-
-Promote 2020-12-30 to prod
-Promote 2021-02-28 to QA
-Promote 2020-06-30 to Dev
-
-Outcome:
-
+1. Create a filter of type "RPM" that includes all packages without errata (ie the base versions of the RHEL packages)
+    Note ticking of "include all RPMs with no errata"
+2. Create a filter of type "Errata " to only include errata up to 2023-06-30
+3. Publish the Content View
+    Now you can see what version 2.0 looks like, as it has significantly less packages available and less errata.
+4. Edit and rename the filter to include errata up to 2023-05-30
+5. Publish the Content View
+6. Edit and rename the filter to include errata up to 2023-04-30
+5. Publish the Content View
+6. Promote v2.0 to prod
+7. Promote v3.0 to QA
+8. Promote v4.0 to Dev
 
 ### TO BE RETESTED Register the servers using AAP template:
 
