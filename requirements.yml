@@ -9,9 +9,9 @@
 # ansible-galaxy collection install -r requirements.yml -p ./ will only install collections."
 
 collections:
-- name: community.general
-  version: 4.8.2
-- theforeman.foreman
+  - name: community.general
+    version: 4.8.2
+  - theforeman.foreman
 
 #roles:
-#- src: linux-system-roles.timesync
+  #- src: linux-system-roles.timesync
