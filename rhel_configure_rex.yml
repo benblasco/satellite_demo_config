@@ -54,7 +54,7 @@
       - ssh
 
   - name: Generate SSH keys for rexuser
-    openssh_keypair:
+    community.crypto.openssh_keypair:
       path: /home/rexuser/.ssh/id_rsa
       owner: rexuser
       group: rexuser
