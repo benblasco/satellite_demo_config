@@ -21,12 +21,12 @@ Note: Launch each template once it has been created.
 
     - Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
-1a. Go to Settings -> Job settings and set the following parameters:
+2. Go to Settings -> Job settings and set the following parameters:
 
     - Enable Role Download: On
     - Enable Collection(s) Download: On
     
-2. Create a new project with the following parameters:
+3. Create a new project with the following parameters:
 
     - Name: DEMO Satellite Demo Config
     - SCM type: GIT
@@ -35,7 +35,7 @@ Note: Launch each template once it has been created.
     - Branch: main
     - Options: Clean; Update Revision on Launch
 
-3. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
+4. Configure Satellite Remote Execution by creating a template with the following parameters and then launching it:
 
     - Name: DEMO Satellite Remote Execution
     - Inventory: Workshop Inventory
@@ -46,7 +46,7 @@ Note: Launch each template once it has been created.
     - Credential name: Satellite Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-4. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  
+5. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  
     Note 1: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.  
     Note 2: The template below includes surveys.  If you want to bypass this just add the variables in the survey as extra_vars when creating the template, with the only caveat being that your RHN password will be seen as plain text.
 
@@ -75,7 +75,7 @@ Note: Launch each template once it has been created.
     - Save
     - Enable Survey via the slider
 
-5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
+6. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
 
     - Name: DEMO RHEL Remote Execution
     - Inventory: Workshop Inventory
@@ -87,7 +87,7 @@ Note: Launch each template once it has been created.
     - Limit: rhel (possibly redundant as it's in the playbook)
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-6. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
+7. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
 
     - Name: DEMO Satellite Configure RHEL hosts
     - Inventory: Workshop Inventory
@@ -100,7 +100,7 @@ Note: Launch each template once it has been created.
 
 Note: You will need to manually add the relevant hosts to the created host groups and host collections, as this has not yet been automated.
 
-7. Continue with any other configuration you want to perform as per the workshop instructions.
+8. Continue with any other configuration you want to perform as per the workshop instructions.
 
 ## Config in Satellite
 
