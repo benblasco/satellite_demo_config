@@ -20,8 +20,6 @@ This bug has been added to advisory RHBA-2022:96560 by Patrick Creech (pcreech@r
 
 Note 1: This is based on the knowledge shared in this comment within a KB article [https://access.redhat.com/discussions/2913231#comment-1148661](https://access.redhat.com/discussions/2913231#comment-1148661).  Please make it a priority to read this article before proceeding.  
 
-Note 2: At the time of writing the latest errata available in the RHPDS Satellite instance were dated approximately February 2022.
-
 ### Publish the Content Views
 
 Note: Steps below are carried out in Satellite.
