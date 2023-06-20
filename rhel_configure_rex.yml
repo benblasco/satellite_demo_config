@@ -66,6 +66,7 @@
       url: https://satellite.example.com:9090/ssh/pubkey
       dest: /tmp/satellite_pubkey
       mode: '0700'
+      validate_certs: false
     tags:
       - satellite_key
 
