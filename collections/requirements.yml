@@ -1,0 +1,4 @@
+- name: community.general
+  version: 4.8.2
+- theforeman.foreman
+- community.crypto
