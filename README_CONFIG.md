@@ -21,6 +21,11 @@ Note: Launch each template once it has been created.
 
     - Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
+1a. Go to Settings -> Job settings and set the following parameters:
+
+    - Enable Role Download: On
+    - Enable Collection(s) Download: On
+    
 2. Create a new project with the following parameters:
 
     - Name: DEMO Satellite Demo Config
