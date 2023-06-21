@@ -11,11 +11,6 @@ Explain we won’t be talking about provisioning today, but how we can do it on 
 
 # Applying a patch (errata)
 
-Note: This functionality is currently broken in Satellite 6.10 due to a bug.  You will see an error message saying: "This action uses katello-agent, which is currently disabled. Use remote execution instead."
-Solution link: [https://access.redhat.com/solutions/6667031](https://access.redhat.com/solutions/6667031)
-Bug link: [https://bugzilla.redhat.com/show_bug.cgi?id=2029192](https://bugzilla.redhat.com/show_bug.cgi?id=2029192)
-This bug has been added to advisory RHBA-2022:96560 by Patrick Creech (pcreech@redhat.com)
-
 ## Setup (manual)
 
 Note 1: This is based on the knowledge shared in this comment within a KB article [https://access.redhat.com/discussions/2913231#comment-1148661](https://access.redhat.com/discussions/2913231#comment-1148661).  Please make it a priority to read this article before proceeding.  
