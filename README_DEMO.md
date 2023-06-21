@@ -70,7 +70,7 @@ Note: Steps below are carried out in AAP Automation Controller
 
 Note: Steps 2-4 above are required to update the inventory in AAP Controller in case that is used elsewhere.
 
-## Demo (To be updated)
+## Demo
 
 1. Go to Content -> Errata
 3. Explain Applicable and Installable
@@ -90,10 +90,10 @@ Optional tasks:
 
 # Installing/Updating a package
 
-1. Go to the Hosts -> Host Collections -> All (RHEL) hosts collection
-2. Click "Package Installation, Removal, and Update"
+1. Go to the Hosts -> Content Hosts
+2. Click the drop-down next to the "Select Action" button, and select "Manage Packages"
 3. Enter “nano” package name (editor) (or screen, vim-enhanced, bash-completion)
-4. Install -> via remote execution
+4. Click the drop down next to "Install" and select "via remote execution"
 5. Point out that you could do an “update all packages” but it would take a long time, so we won’t be doing that!
 6. Click Done
 7. Watch the install
@@ -101,18 +101,19 @@ Optional tasks:
 # Check if a reboot is required
 
 1. Go to Hosts -> All Hosts
-2. Add filter “trace_status=reboot_needed” (without the quotation marks), and press "Search".
+2. Add filter `trace_status=reboot_needed` via the search box, and press "Search".
 
 Refer to [https://access.redhat.com/discussions/3175851](https://access.redhat.com/discussions/3175851)
 
 # Run a remote job
 
-1. Go to hosts -> All Hosts
-2. Select action -> schedule remote job
-3. Fill in text: hostname; uptime; whoami
-4. Submit
-5. Wait for success
-6. Click on a host and check the output
+1. Go to Hosts -> All Hosts
+2. Select all 3 hosts
+3. Select action -> schedule remote job
+4. Fill in text: `hostname; uptime; whoami`
+5. Click "Submit"
+6. Wait for success
+7. Click on a host and check the output
 
 # Demonstrate system roles
 
