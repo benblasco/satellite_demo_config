@@ -118,12 +118,12 @@ Note: Launch each template once it has been created.
 
 1. Create a filter of type "RPM" that includes all packages without errata (ie the base versions of the RHEL packages)
     Note ticking of "include all RPMs with no errata"
-2. Create a filter of type "Errata " to only include errata up to 2023-03-30
+2. Create a filter of type "Errata " to only include errata up to 2023-04-30
 3. Publish the Content View
     Now you can see what version 2.0 looks like, as it has significantly less packages available and less errata.
-4. Edit and rename the filter to include errata up to 2023-04-30
+4. Edit and rename the filter to include errata up to 2023-05-30
 5. Publish the Content View
-6. Edit and rename the filter to include errata up to 2023-05-30
+6. Edit and rename the filter to include errata up to 2023-06-22
 5. Publish the Content View
 6. Promote v2.0 to prod
 7. Promote v3.0 to QA
