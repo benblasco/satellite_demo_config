@@ -19,10 +19,11 @@ Note: Launch each template once it has been created.
 1. Complete all setup tasks for Exercise 0: Setup here:
 [https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/](https://aap2.demoredhat.com/exercises/ansible_smart_mgmt/0-setup/)
 
-    - EXCEPTION: When running the "Server / RHEL7 Register" template, do not run it as per the instructions above.  Instead,run it 3 times, assigning the hosts to their appropriate environments as follows:
+    - EXCEPTION 1: When running the "Server / RHEL7 Register" template, do not run it as per the instructions above.  Instead,run it 3 times, assigning the hosts to their appropriate environments as follows:
        - node1 -> Dev
        - node2 -> QA
        - node3 -> Prod
+    - EXCEPTION 2: When running the "CONTROLLER / Update inventories via dynamic sources" template, ensure to run it against Dev, QA, and Prod environments
     - Note: You can skip CentOS-related exercises if not demonstrating convert2rhel
 
 2. Go to Settings -> Job settings and set the following parameters:
