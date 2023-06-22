@@ -45,7 +45,7 @@ Note: Launch each template once it has been created.
     - Name: DEMO Satellite Remote Execution
     - Inventory: Workshop Inventory
     - Project: DEMO Satellite Demo Config
-    - Execution Environment: smart_mgmt workshop execution environment
+    - Execution Environment: auto_satellite workshop execution environment
     - Playbook: satellite_config_rex.yml
     - Credential type: Satellite_Collection
     - Credential name: Satellite Credential
