@@ -151,7 +151,7 @@ Node3 updates
 Install    1 Package  (+2 Dependent packages)
 Upgrade  118 Packages
 
-### PARTLY AUTOMATED Create host collection
+### ~~PARTLY AUTOMATED Create host collection~~
 
 Create a hosts collection called "All RHEL hosts collection" and add all 3 RHEL hosts to it:
 
