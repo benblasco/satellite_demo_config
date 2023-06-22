@@ -108,6 +108,12 @@ Note: Launch each template once it has been created.
 
 ## Config in Satellite
 
+### Synchronise the repositories
+
+1. Navigate to Content -> Sync Status -> Red Hat Enterprise Linux Server -> 7Server -> x86_64
+2. Tick "Red Hat Enterprise Linux 7 Server RPMs x86_64 7Server" and "Red Hat Enterprise Linux 7 Server - Extras RPMs x86_64"
+3. Click the "Synchronise Now" button to pull the latest content.
+
 ### Create new version of the Content View (CV) for each lifecycle environment (LCE)
 
 1. Create a filter of type "RPM" that includes all packages without errata (ie the base versions of the RHEL packages)
@@ -123,7 +129,7 @@ Note: Launch each template once it has been created.
 7. Promote v3.0 to QA
 8. Promote v4.0 to Dev
 
-### TO BE RETESTED Register the servers using AAP template:
+### ~~TO BE RETESTED Register the servers using AAP template:~~
 
 Next, run the SERVER / RHEL7 - Register job template by clicking the "launch" button to launch.
 
