@@ -51,7 +51,19 @@ Note: Launch each template once it has been created.
     - Credential name: Satellite Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
-5. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  
+5. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
+
+    - Name: DEMO RHEL Remote Execution
+    - Inventory: Workshop Inventory
+    - Project: DEMO Satellite Demo Config
+    - Execution Environment: auto_satellite workshop execution environment
+    - Playbook: rhel_configure_rex.yml
+    - Credential type: Machine
+    - Credential name: Workshop Credential
+    - Limit: rhel (possibly redundant as it's in the playbook)
+    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+
+6. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  
     Note 1: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.  
     Note 2: The template below includes surveys.  If you want to bypass this just add the variables in the survey as extra_vars when creating the template, with the only caveat being that your RHN password will be seen as plain text.
 
@@ -79,18 +91,6 @@ Note: Launch each template once it has been created.
     - Required: Yes
     - Save
     - Enable Survey via the slider
-
-6. Enable RHEL Remote Execution by creating a template with the following parameters and then launching it:
-
-    - Name: DEMO RHEL Remote Execution
-    - Inventory: Workshop Inventory
-    - Project: DEMO Satellite Demo Config
-    - Execution Environment: smart_mgmt workshop execution environment
-    - Playbook: rhel_configure_rex.yml
-    - Credential type: Machine
-    - Credential name: Workshop Credential
-    - Limit: rhel (possibly redundant as it's in the playbook)
-    - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
 7. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
 
