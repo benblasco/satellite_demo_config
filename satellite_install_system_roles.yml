@@ -19,9 +19,9 @@
     tags:
       - subscription-manager
 
-  - name: Enable a rhel-7-server-extras-rpms repository
-    community.general.rhsm_repository:
-      name: rhel-7-server-extras-rpms
+  #- name: Enable a rhel-7-server-extras-rpms repository
+  #  community.general.rhsm_repository:
+  #    name: rhel-7-server-extras-rpms
 
   - name: Install the rhel-system-roles package
     yum:
