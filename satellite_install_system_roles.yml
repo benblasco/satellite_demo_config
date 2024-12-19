@@ -14,8 +14,10 @@
   - name: Register the systems with subscription-manager
     redhat_subscription:
       state: present
-      username: "{{ rhn_username }}"
-      password: "{{ rhn_password }}"
+      #username: "{{ rhn_username }}"
+      #password: "{{ rhn_password }}"
+      activationkey: "{{ rhn_activation_key }}"
+      org_id: "{{ rhn_org_id }}"
     tags:
       - subscription-manager
 
