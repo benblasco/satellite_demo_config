@@ -27,22 +27,22 @@ Note: Steps below are carried out in Satellite.
     - Name: Base packages with no errata
     - Content Type: Package
     - Inclusion type: Include
-6. Click Save
-7. Tick the "Include all RPMs with no errata" box
+6. Click Create Filter
+7. Check the "Include all RPMs with no errata" slider. It will turn from grey to blue
 8. Click "Yum Content" -> "Filters"
 9. Click the "New Filter" button and enter the following parameters:
-    - Name: Errata to 2021-09-30
-    - Content Type: Erratum - Date and Type
-    - Inclusion type: Include
-10. Click Save
+    - Name: Errata to 2024-02-28
+    - Content Type: Errata - by date range
+    - Inclusion type: Include filter
+10. Click Create Filter
 11. Leave all the "Errata Type" boxes ticked (Security, Enhancement, Bugfix)
 12. Select Date Type "Updated On"
-13. Set the End Date to 2021-09-30
-14. Click Save
+13. Set the End Date to 2024-02-28
+14. Click Edit Rule to save the changes
 15. Click "Publish New Version"
-16. Wait for the CV to publish.  It will take ~20 minutes
-17. Edit the Errata filter, change the end date to 2021-12-31, and publish again
-18. Edit the Errata filter, change the end date to 2022-03-31, and publish again
+16. Wait for the CV to publish.  It will take ~20 minutes. Be Patient!
+17. Edit the Errata filter, change the end date to 2024-04-30, and publish again
+18. Edit the Errata filter, change the end date to 2024-07-31, and publish again
 19. You will then have multiple versions of the CV, and each newer version should contain more errata than the previous version.
 
 ### Promote the content views
@@ -64,9 +64,9 @@ Note: Steps below are carried out in AAP Automation Controller
     - node1 to "Prod"
     - node2 to "QA"
     - node3 stays in "Dev" (ie. do nothing)
-2. Run the "EC2 / Set instance tags based on Satellite(Foreman) facts" template
-3. Run the "EC2 / Set instance tag - AnsibleGroup" template
-4. Run the "CONTROLLER / Update inventories via dynamic sources" template
+2. Run the "EC2 / Set instance tags based on Satellite facts" template
+3. Run the "EC2 / Set instance tag - RHEL" template
+4. Run the "CONTROLLER / Update inventories via dynamic sources" template for each environment: Dev, QA, Prod
 
 Note: Steps 2-4 above are required to update the inventory in AAP Controller in case that is used elsewhere.
 
@@ -75,28 +75,29 @@ Note: Steps 2-4 above are required to update the inventory in AAP Controller in 
 1. Go to Content -> Errata
 3. Explain Applicable and Installable
 5. Select 100 per page
-6. Click on the "Installable" checkbox
-7. Find the first installable errata for all 3 hosts: RHBA-2021:3649 ca-certificates bug fix and enhancement update 
-8. Note the date is Sep 23
+6. Click on the "Applicable" checkbox
+7. Find the first installable errata for all 3 hosts: RHBA-2024:0856 subscription-manager bug fix update 
+8. Note the date is Feb 19 2024, before the first filter end date created
 9. Click the Apply Errata button to install it and fix the issues on all impacted hosts
 10. Note that it uses Ansible
 11. Click and show the log for one of the hosts
 
 Optional tasks:
 
-1. Go back and click on RHSA-2022:0274 Important: polkit security update 
+1. Go back to the Errata view, click the applicable checkbox, and select  RHSA-2024:3669 Important: less security update 
 2. Run it and fix the issues on just the one host
-3. Go to content views to explain why the content is not accessible to the Prod and QA hosts
+3. Go to content views to explain why the content is not installable on the Prod and QA hosts
 
 # Installing/Updating a package
 
 1. Go to the Hosts -> Content Hosts
-2. Click the drop-down next to the "Select Action" button, and select "Manage Packages"
-3. Enter “nano” package name (editor) (or screen, vim-enhanced, bash-completion)
-4. Click the drop down next to "Install" and select "via remote execution"
-5. Point out that you could do an “update all packages” but it would take a long time, so we won’t be doing that!
-6. Click Done
-7. Watch the install
+2. Select all 3 RHEL hosts
+3. Click the drop-down next to the "Select Action" button, and select "Manage Packages"
+4. Enter “nano” package name (editor) (or screen, vim-enhanced, bash-completion)
+5. Click the drop down next to "Install" and select "via remote execution"
+6. Point out that you could do an “update all packages” but it would take a long time, so we won’t be doing that!
+7. Click Done
+8. Watch the install, which completes quite quickly
 
 # Check if a reboot is required
 
@@ -127,7 +128,6 @@ Preparation steps:
 2. Press the button "Import from satellite.example.com"
 3. Check the "Select all" box and click "Submit"
 
-
 Execution steps:
 1. Open a terminal CLI session on node1
 2. Start with Hosts -> all hosts view
@@ -137,13 +137,17 @@ Execution steps:
 6. Add rhel-system-roles.timesync if not already added
 7. Submit, and explain that now we need to check the configuration
 8. Click on the "Variables" button under the actions for the role
-9. Click on the timesync_ntp_servers parameter. 
+9. Click on the timesync_ntp_provider parameter. 
 10. Click the "Override" check box, and paste the line below exactly as is into the "Default Value"  
-`[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]`  
+`chrony`  
 11. Click "Submit".  You will now see that the value has a flag next to it to tell us that it has been overridden.
-12. Go back to hosts -> all hosts
-13. Alt tab to CLI of node1
-14. Run the following commands on the host  
+12. Click on the timesync_ntp_servers parameter. 
+13. Click the "Override" check box, and paste the line below exactly as is into the "Default Value"  
+`[{"hostname":"0.au.pool.ntp.org","iburst":"yes"},{"hostname":"1.au.pool.ntp.org","iburst":"yes"}]`  
+14. Click "Submit".  You will now see that the value has a flag next to it to tell us that it has been overridden.
+15. Go back to hosts -> all hosts
+16. Alt tab to CLI of node1
+17. Run the following commands on the host  
 ```
 more /etc/chrony.conf
 chronyc sources
@@ -167,9 +171,12 @@ chronyc sources
 3. Explain that this is better for a truly disconnected environment… but ask how disconnected they need to be.
 4. Can switch to console.redhat.com as needed and explain that there you can run remediation here if you have a smart management subscription
 
+Alternatively, follow the detailed instructions located in the exercise here:
+https://github.com/ansible/workshops/tree/devel/exercises/rhdp_auto_satellite/1-compliance
+
 # Demonstrate Insights
 
-Demonstrate this via cloud.redhat.com because our lab hosts are not connected to Insights.
+Demonstrate this via console.redhat.com because our lab hosts are not connected to Insights.
 
 # Other capabilities to discuss
 

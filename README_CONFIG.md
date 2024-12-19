@@ -4,7 +4,7 @@
 ## RHPDS
 
 1. Log in to the [Red Hat Demo System](https://demo.redhat.com)
-2. In the catalog, search for "Ansible Automation Platform 2 & Satellite Workshop"
+2. In the catalog, search for "Ansible Workshop - Automated Satellite Workshop"
 3. Select Size "Training" so you only get one instances, and fill out the other values before submitting
 4. Wait for the workshop to deploy
 5. Click the link provided in the resulting email e.g. [http://<GUID>.example.opentlc.com](http://<GUID>.example.opentlc.com)
@@ -36,7 +36,6 @@ Note: Launch each template once it has been created.
     - Name: DEMO Satellite Demo Config
     - SCM type: GIT
     - SCM URL: [https://github.com/benblasco/satellite_demo_config](https://github.com/benblasco/satellite_demo_config)
-    
     - Branch: main
     - Options: Clean; Update Revision on Launch
 
@@ -64,33 +63,27 @@ Note: Launch each template once it has been created.
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
 
 6. Install RHEL System Roles in Satellite by creating a template with the following parameters and then launching it.  
-    Note 1: This requires your RHN username and password.  It will register the system, install the roles, and then immediately unregister the system.  
-    Note 2: The template below includes surveys.  If you want to bypass this just add the variables in the survey as extra_vars when creating the template, with the only caveat being that your RHN password will be seen as plain text.
+
+    Note 1: The method below is currently not working because the Satellite server does not use the Red Hat CDN. This can be worked around by manually downloading the `rhel-system-roles` rpm package and installing it directly on the Satellite server.
+
+    Note 2: This requires a RHEL activation key and organisation ID, both of which can be retrieved from your account via https://console.redhat.com/insights/connector/activation-keys.  It will register the system, install the roles, and then immediately unregister the system.  
 
     - Name: DEMO Satellite Install System Roles
     - Inventory: Workshop Inventory
     - Project: DEMO Satellite Demo Config
-    - Execution Environment: smart_mgmt workshop execution environment
+    - Execution Environment: auto_satellite workshop execution environment
     - Playbook: satellite_install_system_roles.yml
     - Credential type: Satellite_Collection
     - Credential name: Satellite Credential
     - Credential type: Machine
     - Credential name: Workshop Credential
     - Privilege escalation: yes (even if possibly redundant as it's in the playbook)
+    - Add the following variables:
+    ```
+      rhn_activation_key: <Activation key>
+      rhn_org_id: <Organisation ID>
+    ```
     - Save
-    - Survey -> Add
-    - Question: RHN Username
-    - Answer variable name: rhn_username
-    - Answer type: Text
-    - Required: Yes
-    - Save
-    - Survey -> Add
-    - Question: RHN Password
-    - Answer variable name: rhn_password
-    - Answer type: Password
-    - Required: Yes
-    - Save
-    - Enable Survey via the slider
 
 7. (Partially complete) Configure RHEL host groups and collections by creating a template with the following parameters and then launching it:
 
@@ -137,8 +130,6 @@ Next, run the SERVER / RHEL7 - Register job template by clicking the "launch" bu
 Node1 -> prod
 Node2 -> dev
 Node1 -> qa
-
-
 
 Node1 updates
 Install    1 Package  (+2 Dependent packages)
